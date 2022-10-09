@@ -1,0 +1,43 @@
+
+
+<div style="text-align:left">
+        <mat-toolbar color="primary">
+            Cloud Forensics Analysis
+            <div class='app-descrip'> (A Sample App to train, test and deploy ML Models and ML Pipelines)</div>
+            
+    
+    
+            <div class='welcome-msg' *ngIf=currentUser>Welcome {{currentUser.name}} !</div>
+    
+    
+            <button class="menu-button" style="margin-left:0.5em" mat-icon-button [matMenuTriggerFor]="menu"
+                *ngIf=currentUser>
+                <mat-icon>more_vert</mat-icon>
+            </button>
+    
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                    <mat-icon>account_circle</mat-icon> {{currentUser.name}}
+                </button>
+    
+                <button mat-menu-item>
+                    <mat-icon>notifications_off</mat-icon>
+                    <span>Disable alerts</span>
+                </button>
+    
+                <button mat-menu-item>
+                    <mat-icon>mail</mat-icon>
+                    <span>Contact Us</span>
+                </button>
+    
+                <button (click)="logOut()" mat-menu-item>
+                    <mat-icon>exit_to_app</mat-icon>
+                    <span>Logout</span>
+                </button>
+            </mat-menu>
+    
+    
+        </mat-toolbar>
+</div>   
+
+<router-outlet></router-outlet>

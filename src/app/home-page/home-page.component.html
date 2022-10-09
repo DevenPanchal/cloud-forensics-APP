@@ -1,0 +1,225 @@
+<!-- The content below is only a placeholder and can be replaced. -->
+
+<br>
+<br>
+<span><a mat-raised-button style="margin-left:5rem" color="accent"
+    href="http://localhost:8890/notebooks/Desktop/Retrain-Generate-embeddings-FitKmeans-WrapKmeans-Dump-Upload-Model.ipynb#"
+    target="_blank"><b>Access Jupyter Notebook - Train on home server and Dump/ Acumos Push</b></a></span>
+<br>
+<br>
+
+
+<span><a mat-raised-button style="margin-left:5rem" color="accent" routerLink="/nifi-training"><b>Trigger Model
+      Generation Or Training via NIFI </b></a></span>
+<br>
+<br>
+<span><a mat-raised-button style="margin-left:5rem" color="accent" (click)=show()><b>Score the
+      Model</b></a></span>
+<br>
+
+
+
+<div class="example-container" *ngIf=showdirectPredict>
+  <form
+    style="background-color: cornsilk; size: 0.8rem; font-style: italic;font-family: Arial, Helvetica, sans-serif;font-size: 0.8rem;border-top-right-radius: 0.5rem;border-bottom-left-radius: 0.5rem;border-bottom-right-radius: 0.5rem;border-top-left-radius: 0.5rem"
+    (ngSubmit)="makepredictrequest()" #myForm="ngForm">
+    <p>
+      <br>
+      <b style="margin-left: 1rem;">Enter the Embedding Dimensions</b>
+      <br>
+      <br>
+
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter rxbytes_slope </mat-label> <input matInput placeholder="f0" [(ngModel)]="rxbytes_slope"
+          name="rxbytes_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter rxpackets_slope </mat-label> <input matInput placeholder="f1" [(ngModel)]="rxpackets_slope"
+          name="rxpackets_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter rxerrors_slope </mat-label> <input matInput placeholder="f2" [(ngModel)]="rxerrors_slope"
+          name="rxerrors_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter rxdrops_slope </mat-label> <input matInput placeholder="f3" [(ngModel)]="rxdrops_slope"
+          name="rxdrops_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter txbytes_slope </mat-label> <input matInput placeholder="f4" [(ngModel)]="txbytes_slope"
+          name="txbytes_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter txpackets_slope </mat-label> <input matInput placeholder="f5" [(ngModel)]="txpackets_slope"
+          name="txpackets_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter txerrors_slope </mat-label> <input matInput placeholder="f6" [(ngModel)]="txerrors_slope"
+          name="txerrors_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter txdrops_slope </mat-label> <input matInput placeholder="f7" [(ngModel)]="txdrops_slope"
+          name="txdrops_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter timecpu_slope </mat-label> <input matInput placeholder="f8" [(ngModel)]="timecpu_slope"
+          name="timecpu_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter timesys_slope </mat-label> <input matInput placeholder="f9" [(ngModel)]="timesys_slope"
+          name="timesys_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter timeusr_slope </mat-label> <input matInput placeholder="f10" [(ngModel)]="timeusr_slope"
+          name="timeusr_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter state_slope </mat-label> <input matInput placeholder="f11" [(ngModel)]="state_slope"
+          name="state_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter memmax_slope </mat-label> <input matInput placeholder="f12" [(ngModel)]="memmax_slope"
+          name="memmax_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter mem_slope </mat-label> <input matInput placeholder="f13" [(ngModel)]="mem_slope"
+          name="mem_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter cpus_slope </mat-label> <input matInput placeholder="f14" [(ngModel)]="cpus_slope"
+          name="cpus_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter cputime_slope </mat-label> <input matInput placeholder="f15" [(ngModel)]="cputime_slope"
+          name="cputime_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter memactual_slope </mat-label> <input matInput placeholder="f16" [(ngModel)]="memactual_slope"
+          name="memactual_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter memswap_in_slope </mat-label> <input matInput placeholder="f17" [(ngModel)]="memswap_in_slope"
+          name="memswap_in_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter memswap_out_slope </mat-label> <input matInput placeholder="f18"
+          [(ngModel)]="memswap_out_slope" name="memswap_out_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter memmajor_fault_slope </mat-label> <input matInput placeholder="f19"
+          [(ngModel)]="memmajor_fault_slope" name="memmajor_fault_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter memminor_fault_slope </mat-label> <input matInput placeholder="f20"
+          [(ngModel)]="memminor_fault_slope" name="memminor_fault_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter memunused_slope </mat-label> <input matInput placeholder="f21" [(ngModel)]="memunused_slope"
+          name="memunused_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter memavailable_slope </mat-label> <input matInput placeholder="f22"
+          [(ngModel)]="memavailable_slope" name="memavailable_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter memusable_slope </mat-label> <input matInput placeholder="f23" [(ngModel)]="memusable_slope"
+          name="memusable_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter memlast_update_slope </mat-label> <input matInput placeholder="f24"
+          [(ngModel)]="memlast_update_slope" name="memlast_update_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter memdisk_cache_slope </mat-label> <input matInput placeholder="f25"
+          [(ngModel)]="memdisk_cache_slope" name="memdisk_cache_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter memhugetlb_pgalloc_slope </mat-label> <input matInput placeholder="f26"
+          [(ngModel)]="memhugetlb_pgalloc_slope" name="memhugetlb_pgalloc_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter memhugetlb_pgfail_slope </mat-label> <input matInput placeholder="f27"
+          [(ngModel)]="memhugetlb_pgfail_slope" name="memhugetlb_pgfail_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter memrss_slope </mat-label> <input matInput placeholder="f28" [(ngModel)]="memrss_slope"
+          name="memrss_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter vdard_req_slope </mat-label> <input matInput placeholder="f29" [(ngModel)]="vdard_req_slope"
+          name="vdard_req_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter vdard_bytes_slope </mat-label> <input matInput placeholder="f30"
+          [(ngModel)]="vdard_bytes_slope" name="vdard_bytes_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter vdawr_reqs_slope </mat-label> <input matInput placeholder="f31" [(ngModel)]="vdawr_reqs_slope"
+          name="vdawr_reqs_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter vdawr_bytes_slope </mat-label> <input matInput placeholder="f32"
+          [(ngModel)]="vdawr_bytes_slope" name="vdawr_bytes_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter vdaerror_slope </mat-label> <input matInput placeholder="f33" [(ngModel)]="vdaerror_slope"
+          name="vdaerror_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter hdard_req_slope </mat-label> <input matInput placeholder="f34" [(ngModel)]="hdard_req_slope"
+          name="hdard_req_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter hdard_bytes_slope </mat-label> <input matInput placeholder="f35"
+          [(ngModel)]="hdard_bytes_slope" name="hdard_bytes_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter hdawr_reqs_slope </mat-label> <input matInput placeholder="f36" [(ngModel)]="hdawr_reqs_slope"
+          name="hdawr_reqs_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter hdawr_bytes_slope </mat-label> <input matInput placeholder="f37"
+          [(ngModel)]="hdawr_bytes_slope" name="hdawr_bytes_slope">
+      </mat-form-field>
+      <mat-form-field class="fields" appearance="fill" style="margin-left:1rem">
+        <mat-label>Enter hdaerror_slope </mat-label> <input matInput placeholder="f38" [(ngModel)]="hdaerror_slope"
+          name="hdaerror_slope">
+      </mat-form-field>
+
+
+
+
+      <button mat-raised-button type="submit" style="margin-left:2rem" color="primary" md-raised-button>Submit</button>
+      <button mat-raised-button type="submit" style="margin-left:1rem" color="primary" (click)=dontshow()
+        md-raised-button>Close</button>
+
+      <b style="margin-left: 10rem;"> RESULT : The Predicted Status is : {{modelResponse}} </b>
+
+    </p>
+
+    <br>
+    <br>
+  </form>
+
+
+</div>
+<br>
+
+
+<span><a mat-raised-button style="margin-left:5rem" color="accent" routerLink="/nifi-inference"><b>Trigger Inference for
+      NIFI Pipeline Solution</b></a></span>
+<br>
+<br>
+<span><a mat-raised-button style="margin-left:5rem" color="accent" routerLink=""><b>Trigger Retraining</b></a></span>
+<br>
+<br>
+<span><a mat-raised-button style="margin-left:5rem" color="accent" href="http://127.0.0.1:8080/nifi/"
+    target="_blank"><b>Access NIFI to Trigger Manually for Data Processing / Training / Retraining / Acumos Push/
+      Inference</b></a></span>
+<br>
+<br>
+
+
+
+<!--   <span class="fill-remaining-space"><a mat-raised-button color="warn" routerLink="/signin"><b>Sign In</b></a></span>
+      <span><a mat-raised-button color="warn" style="margin-left:1em" routerLink="/register"><b>Register</b></a></span> -->
