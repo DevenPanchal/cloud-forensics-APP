@@ -1,3 +1,6 @@
+[![DOI](https://zenodo.org/badge/548611185.svg)](https://zenodo.org/doi/10.5281/zenodo.13836074)
+
+
 # Frontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.3.
